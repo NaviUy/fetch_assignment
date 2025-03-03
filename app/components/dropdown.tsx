@@ -1,7 +1,7 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export default function Dropdown({
   label,
@@ -22,7 +22,7 @@ export default function Dropdown({
   const [dropdownDirection, setDropdownDirection] = useState<"up" | "down">("down");
   const dropdownRef = useRef<HTMLButtonElement>(null);
 
-  const findDropDownDirection = () => {
+  const findDropDownDirection = useCallback(() => {
     if (openDropdown && dropdownRef.current) {
         const rect = dropdownRef.current.getBoundingClientRect();
         const estimatedDropdownHeight = 190;
@@ -32,11 +32,11 @@ export default function Dropdown({
           setDropdownDirection("down");
         }
       }
-  };
+  }, [openDropdown]);
 
   useEffect(() => {
     findDropDownDirection();
-  }, [openDropdown, findDropDownDirection])
+  }, [findDropDownDirection])
 
   const bgColors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500", "bg-purple-500", "bg-pink-500"];
 

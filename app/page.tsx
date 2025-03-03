@@ -35,14 +35,14 @@ export default function Home() {
 
   useEffect(() => {
     doSearch();
-  }, []);
+  }, [doSearch]);
 
   useEffect(() => {
     setDogs([]);
     doSearch();
-  }, [searchParams])
+  }, [searchParams, doSearch])
 
-  async function fetchDogs(ids: Array<String>) {
+  async function fetchDogs(ids: Array<string>) {
     try {
       const response = await fetch(`${api}/dogs`, {
         method: "POST",

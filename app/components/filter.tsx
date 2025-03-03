@@ -27,7 +27,7 @@ export default function Filter() {
     })
 
     router.push(`?${params.toString()}`);
-  }, [selectedBreeds])
+  }, [selectedBreeds, router, searchParams]);
 
   const fetchBreeds = async () => {
     try{

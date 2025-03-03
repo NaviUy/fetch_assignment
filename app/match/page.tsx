@@ -31,13 +31,9 @@ export default function Match() {
         )
     }
 
-    useEffect(() => {
-        fetchDog();
-    }, [])
-
     const fetchDog = async () => {
         try {
-            let response = await fetch('https://frontend-take-home-service.fetch.com/dogs', {
+            const response = await fetch('https://frontend-take-home-service.fetch.com/dogs', {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,14 +46,18 @@ export default function Match() {
                 router.push('/login');
             }
 
-            let data = await response.json();
-            let dog = data[0]
+            const data = await response.json();
+            const dog = data[0]
             setDog(dog);
         } catch (error) {
             console.error("Error: ", error);
             return errorMessage
         }
     }
+
+    useEffect(() => {
+        fetchDog();
+    }, [fetch])
 
     return (
         <div className="w-screen h-screen">
