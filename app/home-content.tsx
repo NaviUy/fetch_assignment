@@ -140,7 +140,7 @@ export default function Home() {
         {dogs.length > 0 && search.total > parseInt(showNumberParam) && <Paginate page={parseInt(pageParam)} total={search.total} />}
         {!isFirstLoad && likedDogsId.length > 0 && (
           <div
-            className="fixed h-[56] bottom-4 right-20 flex justify-center items-center text-white bg-purple-700 px-4 rounded-full font-medium cursor-pointer"
+            className="fixed h-[56px] bottom-4 right-20 flex justify-center items-center text-white bg-purple-700 px-4 rounded-full font-medium cursor-pointer"
             onClick={() => {
               findMyMatch();
             }}
