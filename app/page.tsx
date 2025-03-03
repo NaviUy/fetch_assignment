@@ -18,8 +18,6 @@ export default function Home() {
   const searchParams = useSearchParams();
   const pageParam = searchParams.get("page") || "1";
   const showNumberParam = searchParams.get("show") || "25";
-  const sortParam = searchParams.get("sort") || "asc";
-  const sortFieldParam = searchParams.get("sortField") || "name";
   const selectedBreeds = searchParams.getAll("breed") || [];
   const [loadState, setLoadState] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -36,7 +34,7 @@ export default function Home() {
       sortField: searchParams.get("sortField") || "name",
       breeds: searchParams.getAll("breed") || []
     };
-  }, [searchParams.toString()]);
+  }, [searchParams]);
 
   const fetchDogs = async (ids: Array<string>) => {
     try {
