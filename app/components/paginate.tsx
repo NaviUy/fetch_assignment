@@ -10,13 +10,13 @@ export default function Paginate({ page, total }: { page: number; total: number 
 
   const getPageNumbers = () => {
     let start = Math.max(1, page - Math.floor(pagesToShow / 2));
-    let end = Math.min(maxPage, start + pagesToShow - 1);
+    const end = Math.min(maxPage, start + pagesToShow - 1);
 
     if (end - start < pagesToShow - 1) {
       start = Math.max(1, end - pagesToShow + 1);
     }
 
-    let pageNumbers = [];
+    const pageNumbers = [];
     for (let i = start; i <= end; i++) {
       pageNumbers.push(i);
     }

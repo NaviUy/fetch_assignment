@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 import Loader from "./components/loader";
 import { DogCard } from "./components/dog-card";
 import { motion } from "framer-motion";
@@ -11,7 +9,6 @@ import Nav from "./components/nav";
 import Paginate from "./components/paginate";
 import Filter from "./components/filter";
 import Dog from './types/dog'
-
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Home() {
@@ -42,7 +39,7 @@ export default function Home() {
     doSearch();
   }, [searchParams])
 
-  async function fetchDogs(ids: Array<String>) {
+  async function fetchDogs(ids: Array<string>) {
     try {
       const response = await fetch(`${api}/dogs`, {
         method: "POST",
