@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import MatchContent from "./match-context";
+import Loader from "../components/loader";
 
 export default function MatchPage() {
   return (
-    <Suspense fallback={<div>Loading match...</div>}>
+    <Suspense fallback={<div className="h-screen w-screen flex justify-center items-center"><Loader/></div>}>
       <MatchContent />
     </Suspense>
   );
