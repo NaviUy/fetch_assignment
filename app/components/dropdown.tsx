@@ -22,10 +22,6 @@ export default function Dropdown({
   const [dropdownDirection, setDropdownDirection] = useState<"up" | "down">("down");
   const dropdownRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
-    findDropDownDirection();
-  }, [openDropdown])
-
   const findDropDownDirection = () => {
     if (openDropdown && dropdownRef.current) {
         const rect = dropdownRef.current.getBoundingClientRect();
@@ -37,6 +33,10 @@ export default function Dropdown({
         }
       }
   };
+
+  useEffect(() => {
+    findDropDownDirection();
+  }, [openDropdown, findDropDownDirection])
 
   const bgColors = ["bg-red-500", "bg-blue-500", "bg-green-500", "bg-yellow-500", "bg-purple-500", "bg-pink-500"];
 

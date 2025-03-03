@@ -72,7 +72,7 @@ export default function Match() {
                 {dog && <motion.div initial={{ opacity: 0}} animate={{ opacity: 1}} transition={{ duration:1 }}>
                     <DogCard dog={dog} hideHeart={true} />
                 </motion.div>}
-                {dog && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}><h2 className='text-4xl font-bold my-8'>It's a match!</h2></motion.div>}
+                {dog && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}><h2 className='text-4xl font-bold my-8'>{"It's a match!"}</h2></motion.div>}
                 {dog && <button className='bg-white text-black p-4 rounded-2xl hover:bg-gray-300' onClick={() => router.push('/')}>Try Again</button>}
             </motion.div>
         </div>
