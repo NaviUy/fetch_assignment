@@ -17,18 +17,6 @@ export default function Filter() {
     fetchBreeds();
   }, []);
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("page");
-    params.delete("breed");
-
-    selectedBreeds.forEach(breed => {
-        params.append("breed", breed);
-    })
-
-    router.push(`?${params.toString()}`);
-  }, [selectedBreeds, router])
-
   const fetchBreeds = async () => {
     try{
         const response = await fetch('https://frontend-take-home-service.fetch.com/dogs/breeds', {
@@ -64,12 +52,25 @@ export default function Filter() {
   }
 
   const selectedBreedHandler = (breed: string) => {
-    if(selectedBreeds.includes(breed)) {
-        const filteredBreeds = selectedBreeds.filter(selectedBreed => selectedBreed !== breed);
-        setSelectedBreeds(filteredBreeds);
+    let newSelectedBreeds;
+    if (selectedBreeds.includes(breed)) {
+      newSelectedBreeds = selectedBreeds.filter(b => b !== breed);
     } else {
-        setSelectedBreeds([...selectedBreeds, breed]);
+      newSelectedBreeds = [...selectedBreeds, breed];
     }
+    setSelectedBreeds(newSelectedBreeds);
+  
+    // Create a new URLSearchParams instance based on the current params
+    const params = new URLSearchParams(searchParams.toString());
+    // Remove page and any old breed entries
+    params.delete("page");
+    params.delete("breed");
+  
+    // Append new breed selections
+    newSelectedBreeds.forEach(b => params.append("breed", b));
+  
+    // Update the URL without the page parameter
+    router.push(`?${params.toString()}`);
   };
 
   return (
